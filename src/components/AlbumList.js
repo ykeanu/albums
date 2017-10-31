@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView } from 'react-native';
+import AlbumDetail from './AlbumDetail';
 
 // Class based Component that allows access to several methods
 class AlbumList extends Component {
@@ -15,16 +16,19 @@ class AlbumList extends Component {
 
 	renderAlbums() {
 	// .map is an array helper
-		return this.state.albums.map(album => <Text>{album.title}</Text>);
+		return this.state.albums.map(album => 
+			// name of prop is not linked with name of variable in state
+			<AlbumDetail key={album.title} album={album}/>
+		);
 	}
 
 	render() {
 	console.log(this.state);
 
 		return (
-			<View>
+			<ScrollView>
 				{this.renderAlbums()}
-			</View>
+			</ScrollView>
 		);
 	}
 }
